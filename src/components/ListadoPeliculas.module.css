@@ -1,16 +1,11 @@
-/* .listadoPeliculas {
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+.listadoPeliculas {
+    display: grid; 
+    grid-template-columns: 1fr;
+ }
 
 
-@media (min-width:576px) {
+ @media (min-width:1200px) {
     .listadoPeliculas {
-       display: flex; 
-       flex-direction: row;
-       flex-wrap: wrap;
+       grid-template-columns: repeat(4,1fr);
     }
-    
-} */
+}  

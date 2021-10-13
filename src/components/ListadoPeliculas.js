@@ -1,13 +1,11 @@
 import React from 'react'; 
 import { useEffect, useState } from 'react';
-import movies from '../data/data.json'
 import Pelicula from './Pelicula'
 import styles from './ListadoPeliculas.module.css'
 
 
 
 const ListadoPeliculas = () => {
-
   const [state, setstate] = useState([])
 
   useEffect(() => {
