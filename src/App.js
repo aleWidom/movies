@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import Search from './components/Search';
 
 
 
@@ -16,6 +17,7 @@ function App() {
           <DetailPelicula/>
         </Route>
         <Route path="/">
+          <Search/>
           <ListadoPeliculas />
         </Route>
       </Switch>

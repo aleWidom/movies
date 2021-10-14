@@ -4,10 +4,9 @@ import Pelicula from './Pelicula'
 import styles from './ListadoPeliculas.module.css'
 import Loading from './Loading.js'
 
-
-
 const ListadoPeliculas = () => {
-  const [state, setstate] = useState(<Loading />)
+
+  const [state, setstate] = useState("")
 
   useEffect(() => {
     fetch('https://api.themoviedb.org/3/discover/movie', {
@@ -22,22 +21,17 @@ const ListadoPeliculas = () => {
   }, [])
 
 
-  if (state !== []) {
-    return (
-      <h2>{state}</h2>
-    )
+  if(state === "") {
+      return (<Loading/>)
   } else {
-    return (<ul className={styles.listadoPeliculas}>
-      {state.map((movie) => (
-        <Pelicula key={movie.id} movie={movie} />
-      ))}
-    </ul>)
+    return (
+      <ul className={styles.listadoPeliculas}>
+        {state.map((movie) => (
+          <Pelicula key={movie.id} movie={movie} />
+        ))}
+      </ul>)
+    
   }
-
-
-
-
-
 }
 
 export default ListadoPeliculas
