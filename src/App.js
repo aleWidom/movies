@@ -17,8 +17,7 @@ function App() {
           <DetailPelicula/>
         </Route>
         <Route path="/">
-          <Search/>
-          <ListadoPeliculas />
+          <Search />
         </Route>
       </Switch>
     </Router>
