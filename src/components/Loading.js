@@ -1,9 +1,12 @@
+import { FaSpinner } from "react-icons/fa";
+import styles from './Loading.module.css'
+
 const Loading = () => {
 
     return (
-        <h1>
-            Loading
-        </h1>
+        <div className={styles.spinner}>
+            <FaSpinner className={styles.spinning}/>
+        </div>
     )
 }
 

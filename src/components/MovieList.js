@@ -1,11 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Pelicula from './Pelicula'
-import styles from './ListadoPeliculas.module.css'
+import Card from './Card'
+import styles from './MovieList.module.css'
 import Loading from './Loading.js'
 
 
-const ListadoPeliculas = (props) => {
+const MovieList = (props) => {
 
   /* const useQuery = () => {
     return new URLSearchParams(useLocation().search)
@@ -21,11 +21,7 @@ const ListadoPeliculas = (props) => {
   const search = props.search;
 
   useEffect(() => {
-
-    const searchUrl = search ? 'https://api.themoviedb.org/3/search/movie?query=' + search : 'https://api.themoviedb.org/3/discover/movie' 
-
-    
-
+    const searchUrl = search ? 'https://api.themoviedb.org/3/search/movie?query=' + search : 'https://api.themoviedb.org/3/discover/movie'; 
     fetch(searchUrl, {
       headers: {
         Authorization:
@@ -35,20 +31,27 @@ const ListadoPeliculas = (props) => {
     })
       .then((res) => res.json())
       .then((data) => setstate(data.results))
+      .catch((error) => {
+        console.log(error);
+      })
   }, [search])
 
+  console.log(state)
 
   if(state === "") {
       return (<Loading/>)
+  }
+  else if (state.length === 0) {
+    return (<p>No encontramos peliculas que coincidan con su búsqueda</p>)
   } else {
     return (
-      <ul className={styles.listadoPeliculas}>
-        {state.map((movie) => (
-          <Pelicula key={movie.id} movie={movie} />
+      <ul className={styles.movieList}>
+        {state.filter((movie)=>(movie.poster_path)).map((movie) => (
+          <Card key={movie.id} movie={movie} />
         ))}
       </ul>)
     
   }
 }
 
-export default ListadoPeliculas
+export default MovieList;
