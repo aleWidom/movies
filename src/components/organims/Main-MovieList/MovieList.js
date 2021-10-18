@@ -1,22 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Card from './Card'
+import Loading from '../../atoms/Loading/Loading'
+import Card from '../../molecules/Card/Card'
 import styles from './MovieList.module.css'
-import Loading from './Loading.js'
-
 
 const MovieList = (props) => {
 
-  /* const useQuery = () => {
-    return new URLSearchParams(useLocation().search)
-  } */
-
   const [state, setstate] = useState("")
-
-  /* const location = useLocation()
-
-  const query = useQuery();
-  const search = query.get('search'); */
 
   const search = props.search;
 
@@ -45,11 +35,11 @@ const MovieList = (props) => {
     return (<p>No encontramos peliculas que coincidan con su búsqueda</p>)
   } else {
     return (
-      <ul className={styles.movieList}>
+      <div className={styles.movieList}>
         {state.filter((movie)=>(movie.poster_path)).map((movie) => (
           <Card key={movie.id} movie={movie} />
         ))}
-      </ul>)
+      </div>)
     
   }
 }

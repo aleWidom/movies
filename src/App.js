@@ -1,12 +1,13 @@
-import Header from './components/Header';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import Search from './components/Search';
-import MovieDetail from './components/MovieDetail';
+import Header from './components/organims/Header/Header';
+import MovieList from "./components/organims/Main-MovieList/MovieList";
+import MovieDetail from "./components/organims/Main-MovieDetail/MovieDetail";
+import Footer from "./components/organims/Footer/Footer";
 
 
 
@@ -15,12 +16,13 @@ function App() {
       <Router>
       <Switch>
         <Route path="/details/:id">
-          <Link to="/"><Header /></Link>
-          <MovieDetail />
+         <Link to="/"><Header /></Link> 
+         <MovieDetail/>
         </Route>
         <Route path="/">
-          <Link to="/"><Header/></Link>
-          <Search/>
+         <Link to="/"><Header/></Link> 
+         <MovieList/>
+         <Footer/>
         </Route>
       </Switch>
     </Router>

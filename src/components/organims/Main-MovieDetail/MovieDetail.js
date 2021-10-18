@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import Loading from '../../atoms/Loading/Loading';
 import styles from './MovieDetail.module.css'
-import Loading from './Loading';
-
-
 
 
 const MovieDetail = () => {
@@ -11,8 +9,6 @@ const MovieDetail = () => {
   const { id } = useParams();
 
   const [movies, setMovies] = useState("")
-
-
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/${id}`, {
@@ -36,16 +32,16 @@ const MovieDetail = () => {
   else {
     const imageUrl = "https://image.tmdb.org/t/p/w300" + movies.poster_path;
     return (
-      <div className={styles.container}>
+      <>
         <img src={imageUrl} alt={movies.overview} />
-        <div className={styles.description}>
+        <ul className={styles.description}>
           <h3><strong>Title: </strong>{movies.title}</h3>
           <p><strong>Description: </strong>{movies.overview}</p>
   {/*         <p><strong>Genres: </strong>{movies.genres.map((e) => (
             <span key={e.id}>{e.name} -</span>
           ))}</p> */}
-        </div>
-      </div>
+        </ul>
+      </>
   
     )
   }
