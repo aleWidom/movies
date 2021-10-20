@@ -3,43 +3,50 @@ import axios from "axios";
 //tiene nuestro estado que va a parti limpiecito
 const dataInicial = {
     array: [],
-    offset: 0
+    offset: 0,
+    loading: true
 }
 
 //reducer (modificaria el state, en este caso la dataInicial)
 export default function movieReducer (state = dataInicial, action) {
     switch (action.type) {
         case GET_OBTENER_MOVIES_EXITO:
-            return {
-                ...state, array: action.payload
-            }
+            return {...state, array: action.payload};
             break;
-            case GET_OBTENER_MOVIES_SIGUIENTE_EXITO:
-            return {
-                ...state, array: action.payload.array, offset: action.payload.offset
-            }
+        case GET_OBTENER_MOVIES_SEARCH:
+            return {...state, array: action.payload};
+            break;
+        case GET_OBTENER_MOVIES_SEARCH:
+            return {...state, loading: false};
             break;
         default:
-            return state
+            return state;
             break;
     }
 }
 
+
 //types
 const GET_OBTENER_MOVIES_EXITO = 'GET_OBTENER_MOVIES_EXITO';
-const GET_OBTENER_MOVIES_SIGUIENTE_EXITO = 'GET_OBTENER_MOVIES_SIGUIENTE_EXITO';
+const GET_OBTENER_MOVIES_SEARCH = 'GET_OBTENER_MOVIES_SEARCH';
+const LOADING = 'LOADING';
+/* const GET_OBTENER_MOVIES_SIGUIENTE_EXITO = 'GET_OBTENER_MOVIES_SIGUIENTE_EXITO'; */
 
 
 //actions (para poder activar el reducer se usa el dispatch)
 export const obtenerMoviesAction = () => async (dispatch, getState) => {
     
     //getState lee la tienda(el store)
-    const offset = getState().movies.offset;
-
-    console.log(getState())
+ /*    const offset = getState().movies.offset; */
 
     try {
-       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`)
+       const res = await axios.get(`https://api.themoviedb.org/3/discover/movie`, {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzUzN2ZmMTlmMzgxZGQ3YjY3ZWVlMWVhOGI4MTY0YSIsInN1YiI6IjVlM2ExNmU1MGMyNzEwMDAxODc1NTI4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nOpZ_nBtA93tbzr6-rxD0760tssAAaSppyjRv9anArs",
+          "Content-Type": "application/json;charset=utf-8",
+        }
+      })
        dispatch(
            {
                type: GET_OBTENER_MOVIES_EXITO,
@@ -52,7 +59,36 @@ export const obtenerMoviesAction = () => async (dispatch, getState) => {
 }
 
 
-export const siguienteMoviesAction = () => async (dispatch, getState) => {
+export const searchMoviesAction = (search) => async (dispatch, getState) => {
+    try {
+        const res = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${search}`, {
+         headers: {
+           Authorization:
+             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzUzN2ZmMTlmMzgxZGQ3YjY3ZWVlMWVhOGI4MTY0YSIsInN1YiI6IjVlM2ExNmU1MGMyNzEwMDAxODc1NTI4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nOpZ_nBtA93tbzr6-rxD0760tssAAaSppyjRv9anArs",
+           "Content-Type": "application/json;charset=utf-8",
+         }
+       })
+        dispatch(
+            {
+                type: GET_OBTENER_MOVIES_SEARCH,
+                payload: res.data.results
+            }
+        )
+     } catch (error) {
+         console.log(error)
+     } 
+}
+
+
+export const loadingPage = () => async (dispatch, getState) => {
+    dispatch(
+        {
+            type: LOADING,
+        }
+    )
+}
+
+/* export const siguienteMoviesAction = () => async (dispatch, getState) => {
 
     console.log(getState())
     
@@ -75,3 +111,4 @@ export const siguienteMoviesAction = () => async (dispatch, getState) => {
         console.log(error)
     }
 }
+ */

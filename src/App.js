@@ -10,7 +10,7 @@ import MovieDetail from "./components/organims/Main-MovieDetail/MovieDetail";
 import Footer from "./components/organims/Footer/Footer";
 import {Provider} from 'react-redux'
 import generateStore from './redux/store';
-import ListaDePeliculas from './components/ListaDePeliculas'
+
 
 
 function App() {
@@ -19,13 +19,8 @@ function App() {
 
   return (
     <Provider store={store}>
-      <ListaDePeliculas/>
-    </Provider>
-     /*  <Router>
+    <Router>
       <Switch>
-      <Route path="/redux">
-           Redux
-        </Route>
         <Route path="/details/:id">
          <Link to="/"><Header /></Link> 
          <MovieDetail/>
@@ -36,7 +31,9 @@ function App() {
          <Footer/>
         </Route>
       </Switch>
-    </Router> */
+    </Router> 
+    </Provider>
+    
   );
 }
 

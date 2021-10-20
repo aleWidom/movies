@@ -1,47 +1,42 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Loading from '../../atoms/Loading/Loading'
 import Card from '../../molecules/Card/Card'
 import styles from './MovieList.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { obtenerMoviesAction, loadingPage } from '../../../redux/movieDucks'
 
-const MovieList = (props) => {
+const MovieList = () => {
 
-  const [state, setstate] = useState("")
-
-  const search = props.search;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const searchUrl = search ? 'https://api.themoviedb.org/3/search/movie?query=' + search : 'https://api.themoviedb.org/3/discover/movie'; 
-    fetch(searchUrl, {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzUzN2ZmMTlmMzgxZGQ3YjY3ZWVlMWVhOGI4MTY0YSIsInN1YiI6IjVlM2ExNmU1MGMyNzEwMDAxODc1NTI4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nOpZ_nBtA93tbzr6-rxD0760tssAAaSppyjRv9anArs",
-        "Content-Type": "application/json;charset=utf-8",
-      }
-    })
-      .then((res) => res.json())
-      .then((data) => setstate(data.results))
-      .catch((error) => {
-        console.log(error);
-      })
-  }, [search])
+    dispatch(obtenerMoviesAction())
+  }, [])
 
-  console.log(state)
 
-  if(state === "") {
-      return (<Loading/>)
-  }
-  else if (state.length === 0) {
-    return (<p>No encontramos peliculas que coincidan con su búsqueda</p>)
+  const movies = useSelector(state => state.movies.array);
+  let loading = useSelector(state => state.movies.loading);
+
+  if (loading) {
+    <Loading />
+    dispatch(loadingPage())
   } else {
-    return (
-      <div className={styles.movieList}>
-        {state.filter((movie)=>(movie.poster_path)).map((movie) => (
-          <Card key={movie.id} movie={movie} />
-        ))}
-      </div>)
-    
+    if (movies.length === 0) {
+      return <h2>No encontramos películas que coincidan con su búsqueda</h2>
+    } else {
+      return (
+        <>
+          <div className={styles.movieList} >
+            {movies.filter((movie) => (movie.poster_path)).map((movie) => (
+              <Card key={movie.id} movie={movie} />
+            ))}
+          </div>
+        </>
+      )
+    }
   }
+
+
 }
 
 export default MovieList;

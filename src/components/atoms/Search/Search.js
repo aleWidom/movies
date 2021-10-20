@@ -1,21 +1,25 @@
 
 import React from 'react'
-import { useState } from 'react'
 import styles from './Search.module.css'
+import { useDispatch } from 'react-redux'
+import { searchMoviesAction, obtenerMoviesAction } from '../../../redux/movieDucks'
 
 const Search = () => {
 
-    const [input, setInput] = useState('')
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
-        setInput(e.target.value);
-        console.log(e.target.value)
+        if(e.target.value === "") {
+            dispatch(obtenerMoviesAction())
+        } else {
+            dispatch(searchMoviesAction(e.target.value))
+        }
     }
-    
+
     return (
         <>
             <form className={styles.form}>
-                <input type='text' onChange={handleChange} value={input} className={styles.input} placeholder='Búsqueda'></input>
+                <input type='text' className={styles.input} placeholder='Búsqueda' onChange={handleChange}></input>
             </form>
         </>
     )

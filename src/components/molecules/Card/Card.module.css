@@ -7,7 +7,14 @@
     width: 100%;
     font-family: 'Bebas Neue', cursive;
     color: rgb(54, 54, 54);
+    border: solid 1px green;
 }
+
+.link {
+    background-color: blue;
+    width: 100%;
+}
+
 .title {
     margin-top: -2px;
     font-size: 18px;
@@ -15,8 +22,8 @@
 }
 
 img {
-    width: 100%;
-    height: 20rem;
+    width: 80%;
+    height: 100%;
 }
 
 .film img:hover {
