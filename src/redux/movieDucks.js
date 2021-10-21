@@ -11,13 +11,13 @@ const dataInicial = {
 export default function movieReducer (state = dataInicial, action) {
     switch (action.type) {
         case GET_OBTENER_MOVIES_EXITO:
-            return {...state, array: action.payload};
+            return {...state, array: action.payload.array, loading: action.payload.loading};
             break;
         case GET_OBTENER_MOVIES_SEARCH:
             return {...state, array: action.payload};
             break;
         case GET_OBTENER_MOVIES_SEARCH:
-            return {...state, loading: false};
+            return {...state, loading: action.payload};
             break;
         default:
             return state;
@@ -29,7 +29,7 @@ export default function movieReducer (state = dataInicial, action) {
 //types
 const GET_OBTENER_MOVIES_EXITO = 'GET_OBTENER_MOVIES_EXITO';
 const GET_OBTENER_MOVIES_SEARCH = 'GET_OBTENER_MOVIES_SEARCH';
-const LOADING = 'LOADING';
+
 /* const GET_OBTENER_MOVIES_SIGUIENTE_EXITO = 'GET_OBTENER_MOVIES_SIGUIENTE_EXITO'; */
 
 
@@ -50,7 +50,10 @@ export const obtenerMoviesAction = () => async (dispatch, getState) => {
        dispatch(
            {
                type: GET_OBTENER_MOVIES_EXITO,
-               payload: res.data.results
+               payload: {
+                   array: res.data.results,
+                   loading: false
+               }
            }
        )
     } catch (error) {
@@ -80,13 +83,7 @@ export const searchMoviesAction = (search) => async (dispatch, getState) => {
 }
 
 
-export const loadingPage = () => async (dispatch, getState) => {
-    dispatch(
-        {
-            type: LOADING,
-        }
-    )
-}
+
 
 /* export const siguienteMoviesAction = () => async (dispatch, getState) => {
 

@@ -11,7 +11,8 @@ const Search = () => {
     const handleChange = (e) => {
         if(e.target.value === "") {
             dispatch(obtenerMoviesAction())
-        } else {
+        }  
+        else {
             dispatch(searchMoviesAction(e.target.value))
         }
     }

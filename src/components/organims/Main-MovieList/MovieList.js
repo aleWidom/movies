@@ -3,7 +3,7 @@ import Loading from '../../atoms/Loading/Loading'
 import Card from '../../molecules/Card/Card'
 import styles from './MovieList.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { obtenerMoviesAction, loadingPage } from '../../../redux/movieDucks'
+import { obtenerMoviesAction} from '../../../redux/movieDucks'
 
 const MovieList = () => {
 
@@ -15,11 +15,10 @@ const MovieList = () => {
 
 
   const movies = useSelector(state => state.movies.array);
-  let loading = useSelector(state => state.movies.loading);
+  const loading = useSelector(state => state.movies.loading);
 
   if (loading) {
-    <Loading />
-    dispatch(loadingPage())
+   return <Loading />
   } else {
     if (movies.length === 0) {
       return <h2>No encontramos películas que coincidan con su búsqueda</h2>
