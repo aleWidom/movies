@@ -5,11 +5,11 @@ import styles from './Card.module.css'
 const Card = ({ movie }) => {
     const imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
     return (
-        <li className={styles.film}>
+        <li className={styles.card}>
             <Link to={'/details/' + movie.id} className={styles.link}>
             <img className={styles.img} src={imageUrl} alt={movie.title} />
             </Link>
-            <p className={styles.title}>{movie.title}</p>
+           {/*  <p className={styles.title}>{movie.title}</p> */}
         </li>
     )
 }

@@ -4,6 +4,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Logo from './components/atoms/Logo/Logo';
 import Header from './components/organims/Header/Header';
 import MovieList from "./components/organims/Main-MovieList/MovieList";
 import MovieDetail from "./components/organims/Main-MovieDetail/MovieDetail";
@@ -22,7 +23,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/details/:id">
-         <Link to="/"><Header /></Link> 
+         <Link to="/"><Logo/></Link> 
          <MovieDetail/>
         </Route>
         <Route path="/">

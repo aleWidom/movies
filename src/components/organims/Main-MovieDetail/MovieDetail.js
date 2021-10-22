@@ -1,48 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router';
 import Loading from '../../atoms/Loading/Loading';
 import styles from './MovieDetail.module.css'
+import {detailMoviesAction} from '../../../redux/movieDucks'
 
 
 const MovieDetail = () => {
 
   const { id } = useParams();
 
-  const [movies, setMovies] = useState("")
+  const dispatch = useDispatch();
+
+  const movie = useSelector(state => state.movies.movie);
+  const loading = useSelector(state => state.movies.loading);
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}`, {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzUzN2ZmMTlmMzgxZGQ3YjY3ZWVlMWVhOGI4MTY0YSIsInN1YiI6IjVlM2ExNmU1MGMyNzEwMDAxODc1NTI4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nOpZ_nBtA93tbzr6-rxD0760tssAAaSppyjRv9anArs",
-        "Content-Type": "application/json;charset=utf-8",
-      }
-    })
-      .then((res) => res.json())
-      .then((data) => setMovies(data))
-      .catch((error) => {
-        console.log(error);
-      })
-  }, [id])
+    dispatch(detailMoviesAction(id))
+  }, [])
 
-
-  if (movies === "") {
+  if (loading) {
     return (<Loading/>)
   }
   else {
-    const imageUrl = "https://image.tmdb.org/t/p/w300" + movies.poster_path;
+    const imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
     return (
-      <>
-        <img src={imageUrl} alt={movies.overview} />
-        <ul className={styles.description}>
-          <h3><strong>Title: </strong>{movies.title}</h3>
-          <p><strong>Description: </strong>{movies.overview}</p>
-  {/*         <p><strong>Genres: </strong>{movies.genres.map((e) => (
-            <span key={e.id}>{e.name} -</span>
-          ))}</p> */}
-        </ul>
-      </>
-  
+      <div className={styles.containerDetail}>
+        <img src={imageUrl} alt={movie.overview} className={styles.detailImage} />
+        <div className={styles.description}>
+          <p><strong>Title: </strong>{movie.title}</p>
+          <p><strong>Description: </strong>{movie.overview}</p>
+       {/*    <p><strong>Genres: </strong>{movie.genres.map((e) => (
+            <span key={e.id}>{e.name} - </span>
+          ))}</p>  */}
+        </div>
+      </div>
     )
   }
 }

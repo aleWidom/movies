@@ -20,7 +20,7 @@ const Search = () => {
     return (
         <>
             <form className={styles.form}>
-                <input type='text' className={styles.input} placeholder='Búsqueda' onChange={handleChange}></input>
+                <input type='text' className={styles.input} placeholder='Search' onChange={handleChange}></input>
             </form>
         </>
     )
