@@ -1,5 +1,5 @@
 .form {
-    border: solid 1px rgb(54, 54, 54);
+/*     border: solid 1px rgb(54, 54, 54); */
     width: 15rem;
     margin-top: 10px;
     display: flex;
@@ -10,8 +10,9 @@
 
 .input {
     border: solid 1px rgb(255, 255, 255);
-    border-radius: 0px;
-    width: 90%;
+    padding: 5px;
+    border-radius: 4px;
+    width: 100%;
 }
 
 input:focus {

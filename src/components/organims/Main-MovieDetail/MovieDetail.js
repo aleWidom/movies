@@ -1,9 +1,9 @@
-import { useEffect} from 'react';
+import { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import Loading from '../../atoms/Loading/Loading';
 import styles from './MovieDetail.module.css'
-import {detailMoviesAction} from '../../../redux/movieDucks'
+import {detailMoviesAction, loadingMovies} from '../../../redux/movieDucks'
 
 
 const MovieDetail = () => {
@@ -11,13 +11,22 @@ const MovieDetail = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
+  const history = useHistory();
+  const route = history.location.pathname;
+  console.log(route)
 
   const movie = useSelector(state => state.movies.movie);
   const loading = useSelector(state => state.movies.loading);
+ 
+  useEffect(() => {
+    dispatch(detailMoviesAction(id));
+  }, [])
 
   useEffect(() => {
-    dispatch(detailMoviesAction(id))
-  }, [])
+    setTimeout(() => {
+      dispatch(loadingMovies(false));
+    }, 700);
+  }, [loading])
 
   if (loading) {
     return (<Loading/>)

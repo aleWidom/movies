@@ -8,9 +8,9 @@ import Logo from './components/atoms/Logo/Logo';
 import Header from './components/organims/Header/Header';
 import MovieList from "./components/organims/Main-MovieList/MovieList";
 import MovieDetail from "./components/organims/Main-MovieDetail/MovieDetail";
-import Footer from "./components/organims/Footer/Footer";
 import {Provider} from 'react-redux'
 import generateStore from './redux/store';
+import Button from "./components/atoms/button/Button";
 
 
 
@@ -23,13 +23,16 @@ function App() {
     <Router>
       <Switch>
         <Route path="/details/:id">
-         <Link to="/"><Logo/></Link> 
+        <Logo/>
          <MovieDetail/>
         </Route>
-        <Route path="/">
-         <Link to="/"><Header/></Link> 
+        <Route path="/movies">
+        <Header/>
          <MovieList/>
-         <Footer/>
+         <Button/>
+        </Route>
+        <Route path="/">
+        <Link to="/movies">Welcome</Link> 
         </Route>
       </Switch>
     </Router> 

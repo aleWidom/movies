@@ -18,11 +18,13 @@
     .detailImage {
         width: 50%;
     }
+
+    .description {
+        width: 50%;
+    }
 }   
 
-.description {
-    width: 50%;
-}
+
 
 
 @media (min-width:768px) {
@@ -40,7 +42,7 @@
 @media (min-width:920px) {
     .containerDetail {
         width: 100%;
-        margin: 25px 0px;
+        margin: 100px 0px;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -53,6 +55,18 @@
 
     .description {
         width: 50%;
+        margin: 20px;
+    }
+}   
+
+
+@media (min-width:1600px) {
+     .detailImage {
+        width: 20%;
+    }
+
+    .description {
+        width: 40%;
         margin: 20px;
     }
 }   

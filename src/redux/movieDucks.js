@@ -1,24 +1,29 @@
-import axios from "axios";
+import {api} from "../config/api";
+
 //constantes
 //tiene nuestro estado que va a parti limpiecito
 const dataInicial = {
     array: [],
     offset: 0,
     loading: true,
-    movie: {}
+    movie: {},
+    page: 1
 }
 
 //reducer (modificaria el state, en este caso la dataInicial)
 export default function movieReducer(state = dataInicial, action) {
     switch (action.type) {
         case GET_OBTENER_MOVIES_EXITO:
-            return { ...state, array: action.payload.array, loading: action.payload.loading };
+            return { ...state, array: action.payload.array, page: action.payload.page };
             break;
         case GET_OBTENER_MOVIES_SEARCH:
             return { ...state, array: action.payload };
-           
+
         case GET_OBTENER_MOVIES_DETAIL:
-            return { ...state, movie: action.payload.movie, loading: action.payload.loading };
+            return { ...state, movie: action.payload.movie,/*  loading: action.payload.loading */ };
+            break;
+        case LOADING_SPINNER:
+            return { ...state, loading: action.payload.loading};
             break;
         default:
             return state;
@@ -31,30 +36,28 @@ export default function movieReducer(state = dataInicial, action) {
 const GET_OBTENER_MOVIES_EXITO = 'GET_OBTENER_MOVIES_EXITO';
 const GET_OBTENER_MOVIES_SEARCH = 'GET_OBTENER_MOVIES_SEARCH';
 const GET_OBTENER_MOVIES_DETAIL = 'GET_OBTENER_MOVIES_DETAIL';
+const LOADING_SPINNER = 'LOADING_SPINNER';
 
 /* const GET_OBTENER_MOVIES_SIGUIENTE_EXITO = 'GET_OBTENER_MOVIES_SIGUIENTE_EXITO'; */
 
 
+
+
+
 //actions (para poder activar el reducer se usa el dispatch)
-export const obtenerMoviesAction = () => async (dispatch, getState) => {
+export const obtenerMoviesAction = (page) => async (dispatch, getState) => {
 
     //getState lee la tienda(el store)
     /*    const offset = getState().movies.offset; */
 
     try {
-        const res = await axios.get(`https://api.themoviedb.org/3/discover/movie?page=5`, {
-            headers: {
-                Authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzUzN2ZmMTlmMzgxZGQ3YjY3ZWVlMWVhOGI4MTY0YSIsInN1YiI6IjVlM2ExNmU1MGMyNzEwMDAxODc1NTI4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nOpZ_nBtA93tbzr6-rxD0760tssAAaSppyjRv9anArs",
-                "Content-Type": "application/json;charset=utf-8",
-            }
-        })
+        const res = await api.get(`discover/movie?page=${page}`)
         dispatch(
             {
                 type: GET_OBTENER_MOVIES_EXITO,
                 payload: {
                     array: res.data.results,
-                    loading: false
+                    page: page
                 }
             }
         )
@@ -66,13 +69,7 @@ export const obtenerMoviesAction = () => async (dispatch, getState) => {
 
 export const searchMoviesAction = (search) => async (dispatch, getState) => {
     try {
-        const res = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${search}`, {
-            headers: {
-                Authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzUzN2ZmMTlmMzgxZGQ3YjY3ZWVlMWVhOGI4MTY0YSIsInN1YiI6IjVlM2ExNmU1MGMyNzEwMDAxODc1NTI4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nOpZ_nBtA93tbzr6-rxD0760tssAAaSppyjRv9anArs",
-                "Content-Type": "application/json;charset=utf-8",
-            }
-        })
+        const res = await api.get(`search/movie?query=${search}`)
         dispatch(
             {
                 type: GET_OBTENER_MOVIES_SEARCH,
@@ -86,19 +83,13 @@ export const searchMoviesAction = (search) => async (dispatch, getState) => {
 
 export const detailMoviesAction = (id) => async (dispatch, getState) => {
     try {
-        const res = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
-            headers: {
-                Authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzUzN2ZmMTlmMzgxZGQ3YjY3ZWVlMWVhOGI4MTY0YSIsInN1YiI6IjVlM2ExNmU1MGMyNzEwMDAxODc1NTI4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nOpZ_nBtA93tbzr6-rxD0760tssAAaSppyjRv9anArs",
-                "Content-Type": "application/json;charset=utf-8",
-            }
-        })
+        const res = await api.get(`movie/${id}`)
         dispatch(
             {
                 type: GET_OBTENER_MOVIES_DETAIL,
                 payload: {
                     movie: res.data,
-                    loading: false
+                    /*  loading: false  */
                 }
             }
         )
@@ -106,6 +97,20 @@ export const detailMoviesAction = (id) => async (dispatch, getState) => {
         console.log(error)
     }
 }
+
+
+
+export const loadingMovies = (boolean) => async (dispatch, getState) => {
+    dispatch(
+        {
+            type: LOADING_SPINNER,
+            payload: {
+                loading: boolean
+            }
+        }
+    )
+}
+
 
 
 

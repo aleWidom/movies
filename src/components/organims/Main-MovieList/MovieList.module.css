@@ -17,6 +17,8 @@
 @media (min-width:920px) {
    .movieList{
       grid-template-columns: repeat(5,1fr);
+      border: solid 10px red;
+    /*   justify-content: center; */
    }
 }   
 
