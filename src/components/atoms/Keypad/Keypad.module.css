@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    color: rgb(255, 0, 0);
+}
+
+.item {
+    margin: 25px 
+}
+
+.item:hover {
+    color: rgb(160, 0, 0);
+    cursor: pointer;
+}

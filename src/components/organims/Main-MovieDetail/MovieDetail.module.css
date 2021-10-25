@@ -14,6 +14,16 @@
     width: 60%;
 }
 
+.item {
+    color: rgb(255, 0, 0);
+    font-size: 25px;
+}
+
+.item:hover {
+    color: rgb(160, 0, 0);
+    cursor: pointer;
+}
+
 @media (min-width:576px) {
     .detailImage {
         width: 50%;
@@ -42,7 +52,7 @@
 @media (min-width:920px) {
     .containerDetail {
         width: 100%;
-        margin: 100px 0px;
+        margin: 50px 0px;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -50,11 +60,11 @@
     }
 
     .detailImage {
-        width: 25%;
+        width: 22%;
     }
 
     .description {
-        width: 50%;
+        width: 40%;
         margin: 20px;
     }
 }   
@@ -62,11 +72,11 @@
 
 @media (min-width:1600px) {
      .detailImage {
-        width: 20%;
+        width: 18%;
     }
 
     .description {
-        width: 40%;
+        width: 35%;
         margin: 20px;
     }
 }   

@@ -1,8 +1,14 @@
 .movieList {
+    width: 100%;
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr;
+    margin: 20px 0px;
+ }
+
+ .parrafo {
     margin: 50px 0px;
+    text-align: center;
  }
 
 
@@ -16,14 +22,7 @@
 
 @media (min-width:920px) {
    .movieList{
-      grid-template-columns: repeat(5,1fr);
-      border: solid 10px red;
-    /*   justify-content: center; */
-   }
-}   
-
-@media (min-width:1920px) {
-   .movieList{
       grid-template-columns: repeat(10,1fr);
    }
 }   
+

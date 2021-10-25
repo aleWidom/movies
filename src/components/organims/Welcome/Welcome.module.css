@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.wallpaper {
+    opacity: 50%;
+    width: 85%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('https://wallpaper.dog/large/20493501.jpg');
+    background-size: cover;
+}
+
+.containerInto {
+    background-color: rgb(0, 0, 0);
+    opacity: 100%;
+}
+
+.link {
+    background-color: rgb(255, 0, 0);
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 2px;
+    width: 40%;
+    text-align: center;
+    margin: 10px 0px 20px 0px;
+}
+
+.link:hover {
+    background-color: rgb(160, 0, 0)
+}
+
+

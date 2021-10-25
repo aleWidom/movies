@@ -4,30 +4,24 @@ import {api} from "../config/api";
 //tiene nuestro estado que va a parti limpiecito
 const dataInicial = {
     array: [],
-    offset: 0,
     loading: true,
     movie: {},
-    page: 1
+    pageMoviesList: 1
 }
 
 //reducer (modificaria el state, en este caso la dataInicial)
 export default function movieReducer(state = dataInicial, action) {
     switch (action.type) {
         case GET_OBTENER_MOVIES_EXITO:
-            return { ...state, array: action.payload.array, page: action.payload.page };
-            break;
+            return { ...state, array: action.payload.array, pageMoviesList: action.payload.pageMoviesList};
         case GET_OBTENER_MOVIES_SEARCH:
             return { ...state, array: action.payload };
-
         case GET_OBTENER_MOVIES_DETAIL:
             return { ...state, movie: action.payload.movie,/*  loading: action.payload.loading */ };
-            break;
         case LOADING_SPINNER:
             return { ...state, loading: action.payload.loading};
-            break;
         default:
             return state;
-            break;
     }
 }
 
@@ -49,7 +43,6 @@ export const obtenerMoviesAction = (page) => async (dispatch, getState) => {
 
     //getState lee la tienda(el store)
     /*    const offset = getState().movies.offset; */
-
     try {
         const res = await api.get(`discover/movie?page=${page}`)
         dispatch(
@@ -57,7 +50,7 @@ export const obtenerMoviesAction = (page) => async (dispatch, getState) => {
                 type: GET_OBTENER_MOVIES_EXITO,
                 payload: {
                     array: res.data.results,
-                    page: page
+                    pageMoviesList: page
                 }
             }
         )
@@ -65,7 +58,6 @@ export const obtenerMoviesAction = (page) => async (dispatch, getState) => {
         console.log(error)
     }
 }
-
 
 export const searchMoviesAction = (search) => async (dispatch, getState) => {
     try {
@@ -97,8 +89,6 @@ export const detailMoviesAction = (id) => async (dispatch, getState) => {
         console.log(error)
     }
 }
-
-
 
 export const loadingMovies = (boolean) => async (dispatch, getState) => {
     dispatch(
