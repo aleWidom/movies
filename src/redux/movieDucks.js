@@ -6,16 +6,17 @@ const dataInicial = {
     array: [],
     loading: true,
     movie: {},
-    pageMoviesList: 1
+    pageMoviesList: 1,
+    keypad: true,
 }
 
 //reducer (modificaria el state, en este caso la dataInicial)
 export default function movieReducer(state = dataInicial, action) {
     switch (action.type) {
         case GET_OBTENER_MOVIES_EXITO:
-            return { ...state, array: action.payload.array, pageMoviesList: action.payload.pageMoviesList};
+            return { ...state, array: action.payload.array, pageMoviesList: action.payload.pageMoviesList, keypad: action.payload.keypad};
         case GET_OBTENER_MOVIES_SEARCH:
-            return { ...state, array: action.payload };
+            return { ...state, array: action.payload, keypad: action.keypad};
         case GET_OBTENER_MOVIES_DETAIL:
             return { ...state, movie: action.payload.movie,/*  loading: action.payload.loading */ };
         case LOADING_SPINNER:
@@ -50,7 +51,8 @@ export const obtenerMoviesAction = (page) => async (dispatch, getState) => {
                 type: GET_OBTENER_MOVIES_EXITO,
                 payload: {
                     array: res.data.results,
-                    pageMoviesList: page
+                    pageMoviesList: page,
+                    keypad: true
                 }
             }
         )
@@ -65,7 +67,8 @@ export const searchMoviesAction = (search) => async (dispatch, getState) => {
         dispatch(
             {
                 type: GET_OBTENER_MOVIES_SEARCH,
-                payload: res.data.results
+                payload: res.data.results,
+                keypad: false
             }
         )
     } catch (error) {

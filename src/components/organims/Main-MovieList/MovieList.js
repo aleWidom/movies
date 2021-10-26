@@ -29,7 +29,7 @@ const MovieList = () => {
     return <Loading />
   } else {
     if (movies.length === 0) {
-      return <h3 className={styles.parrafo}>No encontramos películas que coincidan con su búsqueda.</h3>
+      return <h3 className={styles.parrafo}>We couldn't find movies that match your search.</h3>
     } else {
       return (
         <>
