@@ -37,11 +37,11 @@ const MovieList = () => {
       return (
         <>
           {/*  <h3>Discover</h3> */}
-          <div className={styles.movieList} >
+          <ul className={styles.movieList} >
             {movies.filter((movie) => (movie.poster_path)).map((movie) => (
               <Card key={movie.id} movie={movie} />
             ))}
-          </div>
+          </ul>
           <Keypad />
         </>
       )
@@ -49,11 +49,11 @@ const MovieList = () => {
       return (
         <>
           {/*  <h3>Discover</h3> */}
-          <div className={styles.movieList} >
+          <ul className={styles.movieList} >
             {movies.filter((movie) => (movie.poster_path)).map((movie) => (
               <Card key={movie.id} movie={movie} />
             ))}
-          </div>
+          </ul>
         </>
       )
     }
