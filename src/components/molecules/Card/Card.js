@@ -17,7 +17,6 @@ const Card = ({ movie }) => {
             <Link to={'/movies/details/' + movie.id} className={styles.link} onClick={click}>
             <img className={styles.img} src={imageUrl} alt={movie.title} />
             </Link>
-{/*            <p className={styles.title}>{movie.title}</p>  */}
         </li>
     )
 }

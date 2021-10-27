@@ -1,16 +1,18 @@
 
 import React from 'react'
 import styles from './Search.module.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { searchMoviesAction, obtenerMoviesAction } from '../../../redux/movieDucks'
 
 const Search = () => {
 
     const dispatch = useDispatch();
 
+    const page = useSelector(state => state.movies.pageMoviesList);
+
     const handleChange = (e) => {
-        if(e.target.value === "") {
-            dispatch(obtenerMoviesAction())
+        if(e.target.value === "" ) {
+            dispatch(obtenerMoviesAction(page))
         }  
         else {
             dispatch(searchMoviesAction(e.target.value))

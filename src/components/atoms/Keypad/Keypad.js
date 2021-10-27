@@ -9,7 +9,6 @@ const Keypad = () => {
 
     const dispatch = useDispatch();
     
-    const loading = useSelector(state => state.movies.loading);
     let pageMoviesList = useSelector(state => state.movies.pageMoviesList); 
 
  const following = () => {

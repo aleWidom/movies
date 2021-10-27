@@ -14,6 +14,9 @@ const MovieList = () => {
   const movies = useSelector(state => state.movies.array);
   const loading = useSelector(state => state.movies.loading);
   const page = useSelector(state => state.movies.pageMoviesList);
+  const keypad = useSelector(state => state.movies.keypad);
+
+  console.log(movies)
 
   useEffect(() => {
     dispatch(obtenerMoviesAction(page));
@@ -30,7 +33,7 @@ const MovieList = () => {
   } else {
     if (movies.length === 0) {
       return <h3 className={styles.parrafo}>We couldn't find movies that match your search.</h3>
-    } else {
+    } else if(keypad) {
       return (
         <>
           {/*  <h3>Discover</h3> */}
@@ -40,6 +43,17 @@ const MovieList = () => {
             ))}
           </div>
           <Keypad />
+        </>
+      )
+    } else {
+      return (
+        <>
+          {/*  <h3>Discover</h3> */}
+          <div className={styles.movieList} >
+            {movies.filter((movie) => (movie.poster_path)).map((movie) => (
+              <Card key={movie.id} movie={movie} />
+            ))}
+          </div>
         </>
       )
     }
