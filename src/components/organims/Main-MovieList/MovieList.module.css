@@ -22,15 +22,29 @@
 
 
 @media (min-width:920px) {
+
+   .movieList {
+      margin-top: -25px;
+    }
+
      .movieListTitle{
-      margin-top: 40px;
+      margin-top: 100px;
       font-size: 22px;
    } 
+   
 
    .parrafo {
       margin: 75px 0px;
       text-align: center;
    }
+}   
+
+
+@media (min-width: 1600px) {
+     .movieListTitle{
+      margin: 50px 0px 50px 0px;
+      font-size: 22px;
+   } 
 }   
 
 
