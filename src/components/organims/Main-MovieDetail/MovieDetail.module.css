@@ -108,11 +108,11 @@
 
 @media (min-width:1920px) {
     .detailImage {
-      width: 18%;
+      width: 22%;
   }
 
   .description {
-      width: 18%;
+      width: 22%;
       margin: 20px;
   }
 }   
