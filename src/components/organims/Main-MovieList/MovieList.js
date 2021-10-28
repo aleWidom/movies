@@ -16,7 +16,6 @@ const MovieList = () => {
   const page = useSelector(state => state.movies.pageMoviesList);
   const keypad = useSelector(state => state.movies.keypad);
 
-  console.log(movies)
 
   useEffect(() => {
     dispatch(obtenerMoviesAction(page));
@@ -36,7 +35,7 @@ const MovieList = () => {
     } else if(keypad) {
       return (
         <>
-          {/*  <h3>Discover</h3> */}
+          <h3 className={styles.movieListTitle}>{`Movies`}</h3>
           <ul className={styles.movieList} >
             {movies.filter((movie) => (movie.poster_path)).map((movie) => (
               <Card key={movie.id} movie={movie} />
@@ -48,7 +47,7 @@ const MovieList = () => {
     } else {
       return (
         <>
-          {/*  <h3>Discover</h3> */}
+          <h3 className={styles.movieListTitle}>Found according to search.</h3>
           <ul className={styles.movieList} >
             {movies.filter((movie) => (movie.poster_path)).map((movie) => (
               <Card key={movie.id} movie={movie} />

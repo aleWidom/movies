@@ -1,10 +1,6 @@
 .card {
-    display: flex;
-    flex-direction: row;
     list-style: none;
-    width: 100%;
-    justify-content: center;
-    font-family: 'Bebas Neue', cursive;
+    width: 22%;
 }
 
 
@@ -22,8 +18,7 @@ img {
 
 @media (min-width:920px) {
     .card {
-    width: 100%;
-    max-height: 184px;
+    width: 9%;
 }
 }    
  

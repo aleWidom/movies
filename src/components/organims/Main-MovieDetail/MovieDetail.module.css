@@ -1,22 +1,23 @@
 .containerDetail {
     width: 100%;
-    margin: 25px 0px;
+    margin: 50px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .detailImage {
-    width: 60%;
+    width: 50%;
 }
 
 .description {
-    width: 60%;
+    width: 50%;
 }
 
 .item {
     color: rgb(255, 0, 0);
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .item:hover {
@@ -24,60 +25,60 @@
     cursor: pointer;
 }
 
-@media (min-width:576px) {
-    .detailImage {
-        width: 50%;
-    }
-
-    .description {
-        width: 50%;
-    }
-}   
-
-
-
 
 @media (min-width:768px) {
+    .containerDetail {
+    margin: 100px 0px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    }
+
     .detailImage {
-        width: 30%;
+        width: 40%;
     }
 
     .description {
         width: 40%;
+        margin: 20px;
     }
 }   
-
 
 
 @media (min-width:920px) {
-    .containerDetail {
-        width: 100%;
-        margin: 50px 0px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
+          .detailImage {
+            width: 35%;
+        }
+    
+        .description {
+            width: 35%;
+            margin: 20px;
+        }
+}   
 
+
+@media (min-width:1200px) {
     .detailImage {
-        width: 22%;
-    }
+      width: 25%;
+  }
 
-    .description {
-        width: 40%;
-        margin: 20px;
-    }
+  .description {
+      width: 30%;
+      margin: 20px;
+  }
 }   
 
 
-@media (min-width:1600px) {
-     .detailImage {
-        width: 18%;
-    }
 
-    .description {
-        width: 35%;
-        margin: 20px;
-    }
+@media (min-width:1920px) {
+    .detailImage {
+      width: 18%;
+  }
+
+  .description {
+      width: 18%;
+      margin: 20px;
+  }
 }   
+
 
