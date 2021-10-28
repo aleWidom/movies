@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import styles from './Footer.module.css'
 
 const Footer = () => {
     return (
-        <>
-          <h6>&copy; Alejandro Widomlanski 2021</h6>
-        </>
+        <div className={styles.container}>
+            <span className={styles.footer}>source The Movie Database API</span>
+        </div>
     )
 }
 

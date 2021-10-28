@@ -5,6 +5,7 @@ import styles from './MovieList.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { obtenerMoviesAction, loadingMovies } from '../../../redux/movieDucks'
 import Keypad from '../../atoms/Keypad/Keypad';
+import Footer from '../Footer/Footer';
 
 
 const MovieList = () => {
@@ -16,6 +17,7 @@ const MovieList = () => {
   const page = useSelector(state => state.movies.pageMoviesList);
   const keypad = useSelector(state => state.movies.keypad);
 
+  console.log(movies)
 
   useEffect(() => {
     dispatch(obtenerMoviesAction(page));

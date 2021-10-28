@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    color: rgb(255, 0, 0);
+    font-size: 10px;
+    margin-bottom: 50px;
+}
