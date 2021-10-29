@@ -3,26 +3,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: seagreen 1px solid;
     min-height: 100vh;
 }
 
-/* .wallpaper {
-    opacity: 20%;
-    width: 85%;
-    height: 100vh;
-    display: flex;
-    background: url('https://wallpaper.dog/large/20493501.jpg');
-    background-size: cover;
-    position: relative;
-} */
 
 .containerInto {
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   width: 70%;
+   width: 90%;
 }
 
 .link {

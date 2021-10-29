@@ -11,7 +11,6 @@ const Welcome = () => {
         <Logo className={styles.logo} />
         <Link className={styles.link} to="/movies">Get Started</Link>
        </div>
- {/*      <div className={styles.wallpaper}></div> */}
       <Footer/>
     </div>
   )
